@@ -1,6 +1,13 @@
 inherit core-image
-#CORE_IMAGE_EXTRA_INSTALL += "aesd-assignments"
+CORE_IMAGE_EXTRA_INSTALL += "aesd-assignments"
 CORE_IMAGE_EXTRA_INSTALL += "openssh"
+
+# Force the creation of the nc command shortcut linking directly to the busybox engine
+IMAGE_LINK_NC() {
+    ln -sf /bin/busybox ${IMAGE_ROOTFS}/usr/bin/nc
+}
+ROOTFS_POSTPROCESS_COMMAND += "IMAGE_LINK_NC; "
+
 inherit extrausers
 # See https://docs.yoctoproject.org/singleindex.html#extrausers-bbclass
 # We set a default password of root to match our busybox instance setup
