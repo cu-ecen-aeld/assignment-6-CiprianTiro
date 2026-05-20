@@ -4,9 +4,8 @@ case "$1" in
     start)
         echo "Starting aesdsocket daemon"
         # Start your application in daemon mode
-        start-stop-daemon -S -g root -n aesdsocket -a /usr/bin/aesdsocket -- -d
+        start-stop-daemon -S -n aesdsocket -a /usr/bin/aesdsocket -- -d
 
-        sleep 2
         ;;
     stop)
         echo "Stopping aesdsocket daemon"

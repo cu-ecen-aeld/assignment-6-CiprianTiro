@@ -17,6 +17,13 @@ SRCREV = "59ac16cd6fd9d907fb6c11b65a3522abb5058967"
 # in your assignments repo
 S = "${WORKDIR}/git/server"
 
+inherit update-rc.d
+
+#DEFINE SYSTEM V CONFIGURATION VARIABLES
+INITSCRIPT_PACKAGES = "${PN}"
+INITSCRIPT_NAME:${PN} = "S99aesdsocket"
+INITSCRIPT_PARAMS:${PN} = "defaults 99"
+
 # TODO: Add the aesdsocket application and any other files you need to install
 # See https://git.yoctoproject.org/poky/plain/meta/conf/bitbake.conf?h=kirkstone
 FILES:${PN} += "${bindir}/aesdsocket"
